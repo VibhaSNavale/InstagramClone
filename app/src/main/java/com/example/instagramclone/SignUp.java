@@ -1,5 +1,6 @@
 package com.example.instagramclone;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -71,8 +72,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 ParseQuery<ParseObject> queryAll = ParseQuery.getQuery("Kickboxer");
 
                 //queryAll.whereGreaterThan("punchPower", 500);
-                queryAll.whereGreaterThanOrEqualTo("punchPower", 500);
-                queryAll.setLimit(1);
+                //queryAll.whereGreaterThanOrEqualTo("punchPower", 500);
+                //queryAll.setLimit(1);
 
                 queryAll.findInBackground(new FindCallback<ParseObject>() {
                     @Override
@@ -103,6 +104,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onClick(View view) {
 
+                Intent intent = new Intent(SignUp.this, SignupLoginActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -130,7 +133,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 }
             });
 
-        }catch (Exception e){
+        } catch (Exception e){
             FancyToast.makeText(SignUp.this, e.getMessage(), FancyToast.LENGTH_LONG, FancyToast.ERROR, true).show();
         }
     }
@@ -143,7 +146,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 //            @Override
 //            public void done(ParseException e) {
 //
-//                if(e==null)
+//                if(e == null)
 //                    Toast.makeText(SignUp.this,"Boxer is saved successfully",Toast.LENGTH_SHORT).show();
 //
 //            }
