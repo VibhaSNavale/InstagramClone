@@ -39,7 +39,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
 
-                if(keyCode == KeyEvent.KEYCODE_ENTER
+                if(keyCode == KeyEvent.KEYCODE_ENTER  //if the virtual keyboard is active and user clicks on enter button
                         && keyEvent.getAction() == KeyEvent.ACTION_DOWN){
 
                     onClick(btnSignup);
@@ -72,20 +72,20 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
                 if(edtEnterEmail.getText().toString().equals("")){
 
-                    FancyToast.makeText(SignUp.this, "Email required",
-                            Toast.LENGTH_SHORT, FancyToast.INFO, true).show();
+                    FancyToast.makeText(SignUp.this, "Email required.",
+                            Toast.LENGTH_SHORT, FancyToast.INFO, false).show();
 
                 }
                 else if(edtEnterUsername.getText().toString().equals("")){
 
-                    FancyToast.makeText(SignUp.this, "Username required",
-                            Toast.LENGTH_SHORT, FancyToast.INFO, true).show();
+                    FancyToast.makeText(SignUp.this, "Username required.",
+                            Toast.LENGTH_SHORT, FancyToast.INFO, false).show();
 
                 }
                 else if(edtEnterPassword.getText().toString().equals("")){
 
-                    FancyToast.makeText(SignUp.this, "Password required",
-                            Toast.LENGTH_SHORT, FancyToast.INFO, true).show();
+                    FancyToast.makeText(SignUp.this, "Password required.",
+                            Toast.LENGTH_SHORT, FancyToast.INFO, false).show();
 
                 }
                 else {
@@ -106,13 +106,13 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                             if (e == null) {
 
                                 FancyToast.makeText(SignUp.this, appUser.getUsername() + " is signed up successfully.",
-                                        Toast.LENGTH_SHORT, FancyToast.SUCCESS, true).show();
+                                        Toast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
 
                                 transitionToSocialMediaActivity();
                             }
                             else {
                                 FancyToast.makeText(SignUp.this, "There was an error: " + e.getMessage(),
-                                        Toast.LENGTH_LONG, FancyToast.ERROR, true).show();
+                                        Toast.LENGTH_SHORT, FancyToast.ERROR, false).show();
                             }
 
                             progressDialog.dismiss();

@@ -1,7 +1,9 @@
 package com.example.instagramclone;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +31,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         edtLoginEmail = findViewById(R.id.edtLoginEmail);
         edtLoginPassword = findViewById(R.id.edtLoginPassword);
 
+        edtLoginPassword.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+
+                if(keyCode == KeyEvent.KEYCODE_ENTER  //if the virtual keyboard is active and user clicks on enter button
+                        && keyEvent.getAction() == KeyEvent.ACTION_DOWN){
+
+                    onClick(btnLoginActivity);
+
+                }
+
+                return false;
+            }
+        });
+
         btnLoginActivity = findViewById(R.id.btnLoginActivity);
         btnSignupLoginActivity = findViewById(R.id.btnSignupLoginActivity);
 
@@ -50,6 +67,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             case R.id.btnLoginActivity:
 
+                final ProgressDialog progressDialog = new ProgressDialog(this);
+                progressDialog.setMessage("Logging in");
+                progressDialog.show();
+
                 ParseUser.logInInBackground(edtLoginEmail.getText().toString(), edtLoginPassword.getText().toString(), new LogInCallback() {
                     @Override
                     public void done(ParseUser user, ParseException e) {
@@ -61,6 +82,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                             transitionToSocialMediaActivity();
                         }
+                        else {
+                            FancyToast.makeText(LoginActivity.this, e.getMessage(),
+                                    Toast.LENGTH_SHORT, FancyToast.ERROR, true).show();
+                        }
+                        progressDialog.dismiss();
 
                     }
                 });
