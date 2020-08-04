@@ -1,0 +1,1 @@
+This application has the basic functionalities of a social media application, such as logging in, signing up, logging out, updating profiles, viewing other users' profile details, sharing an image, and viewing other user's posts.
